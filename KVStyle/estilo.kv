@@ -1,0 +1,85 @@
+#: import SwapTransition kivy.uix.screenmanager.SwapTransition
+
+<ItemDrawer>:
+    theme_text_color: "Custom"
+    on_release: self.parent.set_color_item(self)
+
+    IconLeftWidget:
+        id: icon
+        icon: root.icon
+        theme_text_color: "Custom"
+        text_color: root.text_color
+
+<ContentNavigationDrawer>:                
+    padding: "8dp"
+    spacing: "8dp"
+
+    AnchorLayout:
+        anchor_x: "right"
+        size_hint_y: None
+        height: avatar.height
+
+        Image:
+            id: avatar
+            size_hint: None, None
+            size: "56dp", "56dp"
+            source: "src/logo.png"
+
+    MDLabel:
+        text: ""
+        font_style: "Button"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    MDLabel:
+        text: "Todo es Salud."
+        font_style: "Caption"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    ScrollView:
+
+        DrawerList:
+            id: md_list
+
+<UI>:
+    MDScreen:
+        MDNavigationLayout:
+            ScreenManager:
+                transition: SwapTransition()
+                MDScreen:
+                    name: 'home'
+                    md_bg_color: 177/255, 149/255, 187/255,1              
+                    #Headers
+                    MDBoxLayout:
+                        orientation: "vertical"
+
+                        MDTopAppBar:
+                            title: "Todes"
+                            md_bg_color: 248/255, 24/255, 148/255,1                
+                            left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                            elevation: 10
+                            on_action_button: app.callback(self.icon)
+                            right_action_items: [["magnify", lambda x: app.callback_1()], ["dots-vertical", lambda x: nav_drawer.set_state("open")]]
+                    #Body
+                        MDLabel:
+                            text: "Todo es Salud"
+                            font_size: dp(30)
+                            bold: True
+                            halign: "center"
+                    #Footers
+                        MDBottomAppBar:
+                            md_bg_color: 248/255, 24/255, 148/255,1
+
+                            MDTopAppBar:
+                                title: ""
+                                icon: "home"
+                                type: "bottom"                    
+                                mode: "end"
+                                icon_color: 217/255, 1/255, 102/255, 148
+            #Other Functions                    
+            MDNavigationDrawer:
+                id: nav_drawer 
+
+                ContentNavigationDrawer:
+                    id: content_drawer
