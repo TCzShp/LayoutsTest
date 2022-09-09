@@ -1,4 +1,5 @@
 #: import SwapTransition kivy.uix.screenmanager.SwapTransition
+#:import webbrowser webbrowser
 
 <ItemDrawer>:
     theme_text_color: "Custom"
@@ -67,6 +68,11 @@
                             font_size: dp(30)
                             bold: True
                             halign: "center"
+                        MDRectangleFlatButton:
+                            id: "button1"
+                            text: "Go to Google"
+                            pos_hint: {"center_x": 0.5}
+                            on_press: webbrowser.open('http://google.com')
                     #Footers
                         MDBottomAppBar:
                             md_bg_color: 248/255, 24/255, 148/255,1
@@ -74,7 +80,7 @@
                             MDTopAppBar:
                                 title: ""
                                 icon: "home"
-                                type: "bottom"                    
+                                type: "bottom"
                                 mode: "end"
                                 icon_color: 217/255, 1/255, 102/255, 148
             #Other Functions                    

@@ -1,6 +1,7 @@
 import threading
 
 import wikipedia
+import webbrowser
 from kivy.core.clipboard import Clipboard
 
 from kivymd.app import MDApp
@@ -18,6 +19,11 @@ from kivymd.theming import ThemableBehavior
 
 Window.keyboard_anim_args = {'d': .2, 't': 'in_out_expo'}
 Window.softinput_mode = "below_target"
+
+#Abre el Navegador predeterminado con la pagina Google.
+class func():
+    def open():
+        webbrowser.open('google.com')
 
 class UI(ScreenManager):
     pass
